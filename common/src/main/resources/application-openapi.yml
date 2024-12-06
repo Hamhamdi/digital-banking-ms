@@ -1,0 +1,11 @@
+openapi:
+  title: Microservices API Documentation
+  version: 1.0
+  description: Documentation for all microservices endpoints
+  contact:
+    name: Hamza Hamdi
+    email: h_hamdi@etu.enset-media.ac.ma
+    url: https://github.com/Hamhamdi
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
