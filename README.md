@@ -16,7 +16,7 @@ This is a Proof of Concept (POC) for a banking application based on a microservi
 - Spring Boot
 - Spring Cloud
 - Spring OpenFeign
-- Eureka Discovery
+- Consul Discovery
 - Spring Cloud Gateway
 - OpenAPI/Swagger
 
@@ -65,7 +65,7 @@ This is a Proof of Concept (POC) for a banking application based on a microservi
 
 ### 2. Transfer Service
 - Manage bank transfers
-- Communication with Beneficiary Service
+- Communication with Beneficiary Service Via OpenFeign
 - Transaction validation
 
 ### 3. Chatbot Service
