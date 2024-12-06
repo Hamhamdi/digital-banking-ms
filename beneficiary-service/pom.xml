@@ -10,11 +10,15 @@
 	</parent>
 
 	<artifactId>beneficiary-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>beneficiary-service</name>
 	<description>beneficiary-service</description>
 
 	<dependencies>
+		<dependency>
+			<groupId>net.hamdi</groupId>
+			<artifactId>common</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>

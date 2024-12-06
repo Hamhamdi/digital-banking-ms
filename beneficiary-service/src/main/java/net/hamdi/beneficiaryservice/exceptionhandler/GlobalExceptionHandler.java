@@ -46,9 +46,7 @@ public class GlobalExceptionHandler{
 
     // Handler for Validation Exceptions
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ExceptionResponse> handleValidationExceptions(
-            MethodArgumentNotValidException ex
-    ) {
+    public ResponseEntity<ExceptionResponse> handleValidationExceptions(MethodArgumentNotValidException ex, WebRequest request) {
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getAllErrors().forEach((error) -> {
             String fieldName = ((FieldError) error).getField();
@@ -60,6 +58,7 @@ public class GlobalExceptionHandler{
         ExceptionResponse response = ExceptionResponse.builder()
                 .errorCode(BusinessErrorCodes.VALIDATION_ERROR.getCode())
                 .message("Validation failed")
+                .path(request.getDescription(false))
                 .validationErrors(errors)
                 .build();
 
@@ -71,7 +70,8 @@ public class GlobalExceptionHandler{
     // Handler for Constraint Violation Exceptions
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<ExceptionResponse> handleConstraintViolation(
-            ConstraintViolationException ex
+            ConstraintViolationException ex,
+            WebRequest request
     ) {
         Map<String, String> errors = new HashMap<>();
         ex.getConstraintViolations().forEach(violation ->
@@ -81,6 +81,7 @@ public class GlobalExceptionHandler{
         ExceptionResponse response = ExceptionResponse.builder()
                 .errorCode(BusinessErrorCodes.VALIDATION_ERROR.getCode())
                 .message("Constraint validation failed")
+                .path(request.getDescription(false))
                 .validationErrors(errors)
                 .build();
 
