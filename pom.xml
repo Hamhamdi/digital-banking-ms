@@ -13,6 +13,9 @@
         <module>common</module>
         <module>beneficiary-service</module>
         <module>virement-service</module>
+        <module>security-service</module>
+        <module>gateway-service</module>
+
     </modules>
 
     <properties>
