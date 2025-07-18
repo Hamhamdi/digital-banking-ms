@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.hamdi.beneficiaryservice.dto.BeneficiaireDTO;
 import net.hamdi.beneficiaryservice.services.BeneficiaireService;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/beneficiaires")
+@Slf4j
 @Tag(name = BaseController.BENEFICIARY_TAG, description = BaseController.BENEFICIARY_DESCRIPTION)
 public class BeneficiaireController {
 
@@ -36,6 +38,7 @@ public class BeneficiaireController {
     @Operation(summary = "Get beneficiary by ID", description = "Retrieves beneficiary details using their unique identifier")
     public ResponseEntity<BeneficiaireDTO> getBeneficiaryById(@PathVariable("id") Long id) {
         BeneficiaireDTO beneficiaryDTO = beneficiaryService.getBeneficiaryById(id);
+        log.debug("Beneficiary data retrieved successfully for ID: {}", id);
         return ResponseEntity.ok(beneficiaryDTO);
     }
 

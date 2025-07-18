@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: beneficiary-service
+  config:
+    import: "configserver:"
+  cloud:
+    config:
+      fail-fast: true
+
+  # Database configuration
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
+  h2:
+    console:
+      enabled: true
+
+server:
+  port: 8081
+
+# Simple logging configuration
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+  level:
+    net.hamdi: DEBUG
+    org.springframework.web: INFO
+    org.hibernate: INFO
+    com.github.loki4j: INFO
+
+# Management endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,loggers
+  endpoint:
+    health:
+      show-details: always
