@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: virement-service
+  config:
+    import: "configserver:"
+  cloud:
+    config:
+      fail-fast: true
+server:
+  port: 8082

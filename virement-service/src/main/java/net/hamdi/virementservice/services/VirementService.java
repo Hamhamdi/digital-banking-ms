@@ -35,10 +35,10 @@ public class VirementService {
 
         // Validate beneficiary exists by Feign Client
         BeneficiaireDTO beneficiaire = beneficiaireClient.getBeneficiaryById(virementDTO.beneficiaireId());
-        System.out.println(beneficiaire);
         if (beneficiaire == null) {
             throw new InvalidVirementDataException("Beneficiary with ID : " + virementDTO.beneficiaireId() + " , doesn't exist.");
         }
+
 
         // Validate RIB
         if (!beneficiaire.rib().equals(virementDTO.ribDestinataire())) {
