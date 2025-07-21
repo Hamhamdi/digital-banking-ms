@@ -1,13 +1,7 @@
-FROM openjdk:21-slim
+FROM eclipse-temurin:21-jdk-alpine
 
 WORKDIR /app
 
-COPY pom.xml .
-COPY src ./src
+COPY target/beneficiary-service-*.jar app.jar
 
-RUN apt-get update && apt-get install -y maven
-RUN mvn package -DskipTests
-
-EXPOSE 8081
-
-CMD ["java", "-jar", "target/beneficiary-service-1.0-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]

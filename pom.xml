@@ -13,9 +13,8 @@
         <module>common</module>
         <module>beneficiary-service</module>
         <module>virement-service</module>
-        <module>security-service</module>
         <module>gateway-service</module>
-
+        <module>config-service</module>
     </modules>
 
     <properties>
@@ -32,21 +31,20 @@
         <springdoc.version>2.7.0</springdoc.version>
 
         <!-- Spring Cloud Version -->
-        <spring-cloud.version>2024.0.0-RC1</spring-cloud.version>
+        <spring-cloud.version>2024.0.0</spring-cloud.version>
 
         <!-- Dependency Versions -->
         <lombok.version>1.18.30</lombok.version>
         <h2.version>2.2.224</h2.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
-
     </properties>
 
     <dependencyManagement>
         <dependencies>
-            <!-- Spring Boot Starter Parent -->
+            <!-- Spring Boot Dependencies BOM -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-parent</artifactId>
+                <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
@@ -88,22 +86,23 @@
                 <artifactId>mapstruct-processor</artifactId>
                 <version>${mapstruct.version}</version>
             </dependency>
+
+            <!-- OpenApi -->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-<dependencies>
-    <!-- OpenApi  -->
-    <dependency>
-        <groupId>org.springdoc</groupId>
-        <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-        <version>${springdoc.version}</version>
-    </dependency>
 
-    <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-    </dependency>
-
-</dependencies>
+    <dependencies>
+        <!-- Common dependencies for all modules -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
 
     <build>
         <pluginManagement>
@@ -124,6 +123,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.11.0</version>
                     <configuration>
                         <source>${java.version}</source>
                         <target>${java.version}</target>
@@ -151,6 +151,11 @@
     </build>
 
     <repositories>
+        <repository>
+            <id>central</id>
+            <name>Maven Central</name>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
         <repository>
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
